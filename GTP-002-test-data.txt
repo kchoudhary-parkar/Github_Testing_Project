@@ -1,0 +1,60 @@
+GTP-002: Test Data for Code Review Feature
+
+Sample User Data:
+===================
+User ID: 12345
+Username: test_user
+Email: test.user@example.com
+Role: Developer
+Department: Engineering
+Join Date: 2024-01-15
+
+Sample Project Data:
+=====================
+Project ID: GTP
+Project Name: GitHub Testing Project
+Description: Testing repository for AI code review integration
+Repository: https://github.com/kchoudhary-parkar/Github_Testing_Project
+Branch Strategy: Feature branches merged to main
+
+Sample Task Data:
+==================
+Task ID: GTP-002
+Title: github_ticket2
+Description: Testing GitHub access token functionality
+Status: To Do
+Priority: Medium
+Assignee: Abhishek Nage
+Created By: test user
+Created Date: 2025-01-28
+Due Date: 2026-01-31
+
+GitHub Integration Test Cases:
+================================
+1. Fetch pull request information
+2. List all open pull requests for a task
+3. Retrieve PR file changes
+4. Get commit messages
+5. Analyze code diff
+6. Post review comments
+7. Update PR status
+8. Merge pull request
+
+Expected API Responses:
+========================
+GET /api/code-review/task/{task_id}
+- Returns list of code reviews for the task
+- Status: 200 OK
+- Data: Array of review objects
+
+POST /api/code-review/create
+- Creates new code review from PR URL
+- Triggers background analysis
+- Status: 201 Created
+- Response: Review ID and status
+
+Test Pull Requests:
+====================
+PR #1: https://github.com/kchoudhary-parkar/Github_Testing_Project/pull/1
+PR #2: https://github.com/kchoudhary-parkar/Github_Testing_Project/pull/2
+PR #3: https://github.com/kchoudhary-parkar/Github_Testing_Project/pull/3
