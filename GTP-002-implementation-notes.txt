@@ -1,0 +1,89 @@
+GTP-002: Implementation Notes for AI Code Review Feature
+
+Implementation Steps:
+======================
+
+Phase 1: Backend Setup
+-----------------------
+✓ Created MongoDB models for code reviews
+✓ Set up Celery for background task processing
+✓ Configured Redis Cloud for task queue
+✓ Implemented GitHub API integration
+✓ Added security scanning with Bandit
+✓ Integrated Azure OpenAI GPT-5.2 for AI analysis
+
+Phase 2: API Development
+-------------------------
+✓ POST /api/code-review/create - Create review from PR URL
+✓ GET /api/code-review/task/{task_id} - List reviews for task
+✓ GET /api/code-review/review/{review_id} - Get specific review
+✓ POST /api/code-review/webhook - GitHub webhook endpoint
+✓ GET /api/code-review/statistics - Overall statistics
+✓ POST /api/code-review/retry/{review_id} - Retry failed analysis
+✓ GET /api/code-review/project/{project_id} - Project reviews
+✓ GET /api/code-review/health - Health check
+
+Phase 3: Frontend Integration
+-------------------------------
+✓ Created CodeReviewPanel component
+✓ Added tab navigation to TaskDetailModal
+✓ Implemented create review modal
+✓ Added review summary display
+✓ Created security findings viewer
+✓ Added AI insights display
+✓ Implemented real-time status updates
+
+Technical Architecture:
+========================
+
+Backend Stack:
+- FastAPI (Python 3.14)
+- MongoDB Atlas (Database)
+- Redis Cloud (Task Queue)
+- Celery (Background Processing)
+- Azure OpenAI (AI Analysis)
+- Bandit (Security Scanning)
+
+Frontend Stack:
+- React 18
+- Axios (HTTP Client)
+- CSS Modules (Styling)
+
+Data Flow:
+===========
+1. User enters PR URL in frontend
+2. Frontend calls POST /api/code-review/create
+3. Backend creates review record (status: pending)
+4. Celery task queued for background processing
+5. Worker fetches PR files from GitHub API
+6. Security scanner analyzes code
+7. AI reviewer generates insights
+8. Results stored in MongoDB
+9. Frontend polls for updates
+10. Display comprehensive review results
+
+Error Handling:
+================
+- GitHub API rate limiting
+- Invalid PR URLs
+- Network timeouts
+- AI API failures
+- Database connection issues
+- Background task failures
+
+Performance Optimizations:
+===========================
+- Background processing for long-running tasks
+- Caching of GitHub API responses
+- Pagination for large file lists
+- Real-time updates via polling
+- Lazy loading of review details
+
+Security Considerations:
+=========================
+- Tab session key authentication
+- GitHub token validation
+- Input sanitization for PR URLs
+- Rate limiting on API endpoints
+- Secure storage of credentials in environment variables
+- HTTPS for all API communications
